@@ -437,7 +437,7 @@
     </div>
   </section>
 
-  <!-- Contact Section (No Booking Calendar, Direct Email & Socials) -->
+  <!-- Contact Section -->
   <section id="contact" class="py-20 px-6 max-w-4xl mx-auto border-t border-cardBorder text-center">
     <p class="text-xs font-mono text-graphCyan uppercase tracking-widest">Get In Touch</p>
     <h2 class="text-3xl font-bold text-white mt-1">Let's Discuss Your Graph Project</h2>
@@ -445,30 +445,42 @@
       Looking to hire a Neo4j Graph Data Science Engineer or need consulting on GraphRAG and Knowledge Graph architectures? Let's connect.
     </p>
 
-    <div class="mt-8 flex flex-wrap justify-center gap-4">
-      <!-- Direct Email -->
-      <a href="mailto:contact@adjacency.xyz" class="px-6 py-3 rounded-lg bg-gradient-to-r from-graphCyan to-graphBlue text-black font-semibold text-sm hover:opacity-90 transition flex items-center gap-2 shadow-lg shadow-cyan-500/20">
-        <i data-lucide="mail" class="w-4 h-4"></i> Send Email
-      </a>
+    <!-- Email Action Box -->
+    <div class="mt-8 flex flex-col items-center justify-center gap-4">
       
-      <!-- LinkedIn -->
-      <a href="https://www.linkedin.com/in/sonnyhoney/" target="_blank" class="px-6 py-3 rounded-lg bg-cardBg border border-cardBorder hover:border-slate-500 text-white font-semibold text-sm transition flex items-center gap-2">
-        <i data-lucide="linkedin" class="w-4 h-4"></i> Connect on LinkedIn
-      </a>
+      <div class="flex flex-wrap items-center justify-center gap-3">
+        <!-- 1. Copy Email / Direct Mailto Button -->
+        <button onclick="copyEmail()" id="email-btn" class="px-6 py-3 rounded-lg bg-gradient-to-r from-graphCyan to-graphBlue text-black font-semibold text-sm hover:opacity-90 transition flex items-center gap-2 shadow-lg shadow-cyan-500/20 cursor-pointer">
+          <i data-lucide="mail" class="w-4 h-4"></i>
+          <span id="email-text">contact@adjacency.xyz</span>
+        </button>
 
-      <!-- GitHub -->
-      <a href="https://github.com/sonnyhoney" target="_blank" class="px-6 py-3 rounded-lg bg-cardBg border border-cardBorder hover:border-slate-500 text-white font-semibold text-sm transition flex items-center gap-2">
-        <i data-lucide="github" class="w-4 h-4"></i> GitHub Profile
-      </a>
+        <!-- 2. Direct Gmail Webmail Link -->
+        <a href="https://mail.google.com/mail/?view=cm&fs=1&to=contact@adjacency.xyz&su=Graph%20Data%20Science%20Inquiry" target="_blank" class="px-5 py-3 rounded-lg bg-cardBg border border-cardBorder hover:border-slate-500 text-slate-200 font-semibold text-sm transition flex items-center gap-2">
+          <i data-lucide="external-link" class="w-4 h-4 text-graphCyan"></i> Open in Gmail
+        </a>
+      </div>
+
+      <!-- Social Links -->
+      <div class="flex items-center gap-4 mt-2">
+        <a href="https://www.linkedin.com/in/sonnyhoney" target="_blank" class="px-5 py-2.5 rounded-lg bg-cardBg border border-cardBorder hover:border-slate-500 text-white font-medium text-xs transition flex items-center gap-2">
+          <i data-lucide="linkedin" class="w-4 h-4"></i> LinkedIn
+        </a>
+        <a href="https://github.com/sonnyhoney" target="_blank" class="px-5 py-2.5 rounded-lg bg-cardBg border border-cardBorder hover:border-slate-500 text-white font-medium text-xs transition flex items-center gap-2">
+          <i data-lucide="github" class="w-4 h-4"></i> GitHub
+        </a>
+      </div>
+      
+      <p id="copy-feedback" class="text-xs text-emerald-400 font-mono hidden">✓ Email copied to clipboard!</p>
     </div>
   </section>
 
   <!-- Footer -->
   <footer class="py-8 border-t border-cardBorder text-center text-xs text-slate-500 flex flex-col sm:flex-row items-center justify-between max-w-6xl mx-auto px-6 gap-4">
-    <div>© 2026 adjacency.xyz • Sonny Honey. All rights reserved.</div>
+    <div>© 2026 adjacency.xyz • Agwu Sunday Eze. All rights reserved.</div>
     <div class="flex gap-6">
       <a href="https://github.com/sonnyhoney" target="_blank" class="hover:text-graphCyan transition">GitHub</a>
-      <a href="https://www.linkedin.com/in/sonnyhoney/" target="_blank" class="hover:text-graphCyan transition">LinkedIn</a>
+      <a href="https://www.linkedin.com/in/sonnyhoney" target="_blank" class="hover:text-graphCyan transition">LinkedIn</a>
       <a href="#about" class="hover:text-graphCyan transition">Back to Top ↑</a>
     </div>
   </footer>
@@ -476,6 +488,21 @@
   <!-- Lucide Icons Initialize -->
   <script>
     lucide.createIcons();
+
+    function copyEmail() {
+      const email = "contact@adjacency.xyz";
+      navigator.clipboard.writeText(email);
+      
+      const feedback = document.getElementById("copy-feedback");
+      if (feedback) feedback.classList.remove("hidden");
+      
+      // Also trigger default mail app if configured
+      window.location.href = "mailto:" + email;
+      
+      setTimeout(() => {
+        if (feedback) feedback.classList.add("hidden");
+      }, 3000);
+    }
   </script>
 
   <!-- Interactive Force-Directed Graph Animation in Hero Canvas -->
