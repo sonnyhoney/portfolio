@@ -435,7 +435,7 @@
     </div>
   </section>
 
-  <!-- Contact Section -->
+<!-- Contact Section -->
   <section id="contact" class="py-20 px-6 max-w-4xl mx-auto border-t border-cardBorder text-center">
     <p class="text-xs font-mono text-graphCyan uppercase tracking-widest">Get In Touch</p>
     <h2 class="text-3xl font-bold text-white mt-1">Let's Discuss Your Graph Project</h2>
@@ -447,16 +447,16 @@
     <div class="mt-8 flex flex-col items-center justify-center gap-4">
       
       <div class="flex flex-wrap items-center justify-center gap-3">
-        <!-- 1. Copy Email / Direct Mailto Button -->
-        <button onclick="copyEmail()" id="email-btn" class="px-6 py-3 rounded-lg bg-gradient-to-r from-graphCyan to-graphBlue text-black font-semibold text-sm hover:opacity-90 transition flex items-center gap-2 shadow-lg shadow-cyan-500/20 cursor-pointer">
+        <!-- Universal Smart Email Button -->
+        <button onclick="handleSmartEmail()" class="px-6 py-3 rounded-lg bg-gradient-to-r from-graphCyan to-graphBlue text-black font-semibold text-sm hover:opacity-90 transition flex items-center gap-2 shadow-lg shadow-cyan-500/20 cursor-pointer">
           <i data-lucide="mail" class="w-4 h-4"></i>
-          <span id="email-text">contact@adjacency.xyz</span>
+          <span>contact@adjacency.xyz</span>
         </button>
 
-        <!-- 2. Direct Gmail Webmail Link -->
-        <a href="https://mail.google.com/mail/?view=cm&fs=1&to=contact@adjacency.xyz&su=Graph%20Data%20Science%20Inquiry" target="_blank" class="px-5 py-3 rounded-lg bg-cardBg border border-cardBorder hover:border-slate-500 text-slate-200 font-semibold text-sm transition flex items-center gap-2">
+        <!-- Direct Gmail Web Link (Desktop optimized) -->
+        <button onclick="openGmailDesktop()" class="px-5 py-3 rounded-lg bg-cardBg border border-cardBorder hover:border-slate-500 text-slate-200 font-semibold text-sm transition flex items-center gap-2 cursor-pointer">
           <i data-lucide="external-link" class="w-4 h-4 text-graphCyan"></i> Open in Gmail
-        </a>
+        </button>
       </div>
 
       <!-- Social Links -->
@@ -469,9 +469,42 @@
         </a>
       </div>
       
-      <p id="copy-feedback" class="text-xs text-emerald-400 font-mono hidden">✓ Email copied to clipboard!</p>
+      <p id="copy-feedback" class="text-xs text-emerald-400 font-mono hidden">✓ Email copied to clipboard & mail app opened!</p>
     </div>
   </section>
+
+  <script>
+    const emailAddress = "contact@adjacency.xyz";
+    const emailSubject = encodeURIComponent("Graph Data Science Inquiry");
+
+    function copyToClipboard() {
+      navigator.clipboard.writeText(emailAddress);
+      const feedback = document.getElementById("copy-feedback");
+      if (feedback) {
+        feedback.classList.remove("hidden");
+        setTimeout(() => feedback.classList.add("hidden"), 3500);
+      }
+    }
+
+    function handleSmartEmail() {
+      copyToClipboard();
+      // Universal mailto: with pre-filled subject
+      window.location.href = `mailto:${emailAddress}?subject=${emailSubject}`;
+    }
+
+    function openGmailDesktop() {
+      copyToClipboard();
+      const isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+      
+      if (isMobile) {
+        // On mobile: launch native mail/Gmail app
+        window.location.href = `mailto:${emailAddress}?subject=${emailSubject}`;
+      } else {
+        // On desktop: open Gmail webmail compose tab
+        window.open(`https://mail.google.com/mail/?view=cm&fs=1&to=${emailAddress}&su=${emailSubject}`, '_blank');
+      }
+    }
+  </script>
 
   <!-- Footer -->
   <footer class="py-8 border-t border-cardBorder text-center text-xs text-slate-500 flex flex-col sm:flex-row items-center justify-between max-w-6xl mx-auto px-6 gap-4">
