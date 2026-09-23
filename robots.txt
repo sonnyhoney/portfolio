@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://adjacency.xyz/sitemap.xml
