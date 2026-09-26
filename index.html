@@ -337,20 +337,24 @@
 
     <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
       
-      <!-- Article 1 -->
-      <div class="p-6 rounded-2xl bg-cardBg border border-cardBorder hover:border-cyan-500/40 transition flex flex-col justify-between">
+    <!-- Article 1 (Updated with Link) -->
+      <a href="articles/why-vector-search-fails-graphrag.html" class="group p-6 rounded-2xl bg-cardBg border border-cardBorder hover:border-cyan-500/40 transition flex flex-col justify-between block cursor-pointer">
         <div>
           <div class="flex items-center gap-2 text-[11px] font-mono text-slate-400 mb-3">
             <span class="text-graphCyan">GraphRAG</span> • <span>Architectural Deep Dive</span>
           </div>
-          <h3 class="text-base font-bold text-white leading-snug">
-            Why Vector Search Fails at Multi-Hop Reasoning: The Case for Knowledge Graphs
+          <h3 class="text-base font-bold text-white leading-snug group-hover:text-graphCyan transition">
+            Why Vector Search Fails at Multi-Hop Reasoning: Building an Auditable GraphRAG Engine with Neo4j and Gemini
           </h3>
           <p class="text-slate-400 text-xs mt-3 leading-relaxed">
-            Exploring how combining vector embeddings with knowledge graph topologies eliminates hallucinations on dense regulatory and trade datasets.
+            Exploring how combining Knowledge Graphs with LLMs eliminates hallucinations, unlocks multi-hop inference, and provides verifiable audit trails.
           </p>
         </div>
-      </div>
+        <div class="mt-4 flex items-center gap-1 text-xs font-mono text-graphCyan">
+          <span>Read Full Article</span>
+          <i data-lucide="arrow-right" class="w-3.5 h-3.5 group-hover:translate-x-1 transition"></i>
+        </div>
+      </a>
 
       <!-- Article 2 -->
       <div class="p-6 rounded-2xl bg-cardBg border border-cardBorder hover:border-purple-500/40 transition flex flex-col justify-between">

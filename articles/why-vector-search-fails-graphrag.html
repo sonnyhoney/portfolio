@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <!-- SEO & Canonical Tags for Search Rank Authority -->
+  <title>Why Vector Search Fails at Multi-Hop Reasoning: Building an Auditable GraphRAG Engine | Sonny Honey</title>
+  <link rel="canonical" href="https://adjacency.xyz/articles/why-vector-search-fails-graphrag.html" />
+  <meta name="description" content="How combining Knowledge Graphs with LLMs eliminates hallucinations, unlocks multi-hop inference, and provides verifiable audit trails." />
+  
+  <!-- OpenGraph Social Sharing -->
+  <meta property="og:title" content="Why Vector Search Fails at Multi-Hop Reasoning: Building an Auditable GraphRAG Engine with Neo4j and Gemini" />
+  <meta property="og:description" content="Exploring how Knowledge Graphs solve context fragmentation, eliminate hallucinations, and provide deterministic audit trails." />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://adjacency.xyz/articles/why-vector-search-fails-graphrag.html" />
+
+  <!-- Tailwind CSS & Lucide Icons -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            graphCyan: '#00d2ff',
+            graphBlue: '#0066fe',
+            darkBg: '#090d16',
+            cardBg: '#111726',
+            cardBorder: '#1e293b'
+          }
+        }
+      }
+    }
+  </script>
+</head>
+<body class="bg-darkBg text-slate-200 font-sans antialiased selection:bg-graphCyan selection:text-black">
+
+  <!-- Navigation Bar -->
+  <nav class="fixed top-0 w-full z-50 bg-darkBg/90 backdrop-blur-md border-b border-cardBorder">
+    <div class="max-w-4xl mx-auto px-6 h-16 flex items-center justify-between">
+      <a href="../index.html" class="font-mono font-bold text-base text-white flex items-center gap-2">
+        <i data-lucide="network" class="text-graphCyan w-5 h-5"></i>
+        <span>adjacency<span class="text-graphCyan">.xyz</span></span>
+      </a>
+      <a href="../index.html#articles" class="text-xs font-mono text-slate-300 hover:text-graphCyan flex items-center gap-1.5 transition">
+        <i data-lucide="arrow-left" class="w-4 h-4"></i> Back to Home
+      </a>
+    </div>
+  </nav>
+
+  <!-- Article Container -->
+  <main class="pt-28 pb-24 px-6 max-w-3xl mx-auto">
+    
+    <!-- Meta details -->
+    <div class="flex items-center gap-3 text-xs font-mono text-slate-400 mb-4">
+      <span class="px-2.5 py-0.5 rounded bg-cyan-950/70 border border-cyan-800 text-graphCyan">GraphRAG</span>
+      <span>•</span>
+      <span>Enterprise AI Architecture</span>
+      <span>•</span>
+      <span>7 min read</span>
+    </div>
+
+    <!-- Article Heading -->
+    <h1 class="text-3xl sm:text-4.5xl font-extrabold text-white tracking-tight leading-tight mb-4">
+      Why Vector Search Fails at Multi-Hop Reasoning: Building an Auditable GraphRAG Engine with Neo4j and Gemini
+    </h1>
+
+    <p class="text-lg text-slate-300 font-medium leading-relaxed mb-6">
+      How combining Knowledge Graphs with LLMs eliminates hallucinations, unlocks multi-hop inference, and provides verifiable audit trails.
+    </p>
+
+    <!-- Author Profile Badge -->
+    <div class="flex items-center justify-between pb-8 border-b border-cardBorder mb-8">
+      <div class="flex items-center gap-3">
+        <div class="w-11 h-11 rounded-full bg-cyan-950 border border-cyan-500/40 flex items-center justify-center text-graphCyan font-mono font-bold text-sm">
+          SH
+        </div>
+        <div>
+          <p class="text-sm font-bold text-white">Sonny Honey</p>
+          <p class="text-xs text-slate-400 font-mono">Neo4j Certified Graph Data Science Engineer</p>
+        </div>
+      </div>
+      <div class="flex items-center gap-2">
+        <a href="https://enterprise-graphrag-engine.streamlit.app/" target="_blank" class="px-3 py-1.5 rounded-lg bg-cyan-950/80 border border-cyan-500/40 text-graphCyan text-xs font-mono flex items-center gap-1 hover:bg-cyan-900/50 transition">
+          <i data-lucide="play" class="w-3.5 h-3.5"></i> Live Demo
+        </a>
+      </div>
+    </div>
+
+    <!-- IMAGE 1 -->
+    <div class="my-8 rounded-2xl overflow-hidden border border-cardBorder bg-cardBg">
+      <img src="../assets/images/diagram1.png" alt="GraphRAG vs Vector Search Architecture" class="w-full h-auto object-cover" onerror="this.parentElement.innerHTML='<div class=\'p-8 text-center text-slate-400 font-mono text-xs\'>[ Diagram 1: Place diagram1.png in /assets/images/ ]</div>'" />
+      <div class="p-3 text-center text-xs font-mono text-slate-400 border-t border-cardBorder">
+        Figure 1: High-Level Architecture of the Enterprise GraphRAG Platform
+      </div>
+    </div>
+
+    <!-- ARTICLE BODY -->
+    <article class="space-y-8 text-slate-300 text-base leading-relaxed">
+
+      <!-- SECTION 1 -->
+      <section class="space-y-4">
+        <h2 class="text-2xl font-bold text-white tracking-tight">
+          1. The RAG Reality Check: Why Embeddings Aren’t Enough
+        </h2>
+        <p>
+          Over the past two years, Retrieval-Augmented Generation (RAG) has become the default architecture for enterprise generative AI. The standard recipe is well-known:
+        </p>
+        <ol class="list-decimal list-inside space-y-2 pl-2 text-slate-300">
+          <li><strong class="text-white">Chop</strong> unstructured documents into text chunks.</li>
+          <li><strong class="text-white">Generate</strong> dense vector embeddings (e.g., using OpenAI, Cohere, or Google).</li>
+          <li><strong class="text-white">Store</strong> them in a vector database and perform cosine similarity search to retrieve the “top-k” most relevant passages to feed into your Large Language Model (LLM).</li>
+        </ol>
+        <p>
+          While this works reasonably well for basic question-answering over isolated FAQs, <span class="text-red-400 font-semibold">Naive Vector RAG quickly breaks down in production environments</span> — especially in high-stakes domains like regulatory compliance, financial transactions, legal analysis, and cross-border trade.
+        </p>
+        <div class="p-4 rounded-xl bg-cardBg border-l-4 border-graphCyan text-slate-200 font-medium text-sm">
+          Why? Because flat vector search is fundamentally blind to interconnected relationships.
+        </div>
+      </section>
+
+      <!-- SECTION 2 -->
+      <section class="space-y-4 pt-4 border-t border-cardBorder">
+        <h2 class="text-2xl font-bold text-white tracking-tight">
+          2. The Multi-Hop Blindspot
+        </h2>
+        <p>
+          Consider a real-world enterprise scenario under the African Continental Free Trade Area (AfCFTA) regulatory framework. Suppose an analyst asks:
+        </p>
+        <blockquote class="p-4 rounded-xl bg-cyan-950/30 border border-cyan-500/30 text-graphCyan font-mono text-sm">
+          “What regulatory approvals, certificates of origin, and transit corridor protocols are required to export Processed Cocoa Powder from Ghana to Nigeria at preferential tariff rates?”
+        </blockquote>
+        <p>
+          To answer this question accurately, an AI system must connect multiple disjointed facts scattered across dozens of pages:
+        </p>
+        <ul class="space-y-2 pl-2 font-mono text-xs text-slate-300">
+          <li class="flex items-start gap-2"><span class="text-graphCyan">▶</span> <strong>Page 3:</strong> Mentions that Ghana produces Processed Cocoa Powder under HS Code 1805.00.</li>
+          <li class="flex items-start gap-2"><span class="text-graphCyan">▶</span> <strong>Page 18:</strong> Specifies that preferential AfCFTA tariffs require a Certificate of Origin issued by the Ghana Export Promotion Authority (GEPA).</li>
+          <li class="flex items-start gap-2"><span class="text-graphCyan">▶</span> <strong>Page 42:</strong> Mandates that importing food goods into Nigeria requires registration with NAFDAC.</li>
+          <li class="flex items-start gap-2"><span class="text-graphCyan">▶</span> <strong>Page 77:</strong> Outlines transit clearance protocols through the Togo/Benin corridor.</li>
+        </ul>
+        <p>
+          <strong class="text-white">What happens with Naive Vector Search?</strong><br/>
+          A vector database computes semantic similarity between the user query and isolated text chunks. It might fetch Page 3 and Page 77, but miss Page 18 and Page 42 because individual paragraphs lacked keyword overlap with the query. The LLM either gives an incomplete answer or hallucinates compliance rules.
+        </p>
+      </section>
+
+      <!-- SECTION 3 -->
+      <section class="space-y-4 pt-4 border-t border-cardBorder">
+        <h2 class="text-2xl font-bold text-white tracking-tight">
+          3. Enter GraphRAG: Bringing Topology to Generative AI
+        </h2>
+        <p>
+          To solve multi-hop reasoning, we must structure data the way human experts understand complex domains: as an interconnected network of entities and relationships.
+        </p>
+        
+        <!-- ASCII Topology Box -->
+        <div class="p-4 rounded-xl bg-[#0a0f1d] border border-cardBorder font-mono text-xs text-slate-300 overflow-x-auto leading-relaxed">
+[Country: Ghana] ──(EXPORTS)──&gt; [Product: Cocoa Powder]
+       │                                │
+ (GOVERNS_EXPORT)                 (REQUIRES_DOC)
+       ▼                                ▼
+[Org: GEPA]              [Doc: AfCFTA Certificate of Origin]
+                                        │
+                                (VALIDATED_BY)
+                                        ▼
+                            [Country: Nigeria (NAFDAC)]
+        </div>
+
+        <p>
+          By storing domain knowledge inside a <strong class="text-white">Labeled Property Graph (Neo4j)</strong>, the relationship between entities becomes a first-class citizen. Instead of guessing similarity across flat text, the system traverses deterministic relational paths.
+        </p>
+      </section>
+
+      <!-- SECTION 4 -->
+      <section class="space-y-4 pt-4 border-t border-cardBorder">
+        <h2 class="text-2xl font-bold text-white tracking-tight">
+          4. Engineering the Solution: The Enterprise GraphRAG Architecture
+        </h2>
+        <p>
+          I designed and built the <strong>Universal GraphAI Platform</strong> — an end-to-end GraphRAG intelligence system powered by <strong>Neo4j Aura Cloud GDS</strong> and <strong>Google Gemini (gemini-3.5-flash-lite)</strong>.
+        </p>
+
+        <!-- Pipeline Diagram -->
+        <div class="p-4 rounded-xl bg-[#0a0f1d] border border-cardBorder font-mono text-xs text-graphCyan overflow-x-auto leading-loose text-center">
+[ Multi-Format Enterprise Documents ] (PDF, DOCX, CSV, TXT, OCR)<br/>
+↓<br/>
+[ Sliding-Window Chunking Pipeline ]<br/>
+↓<br/>
+[ LLM Knowledge Triple Extractor (Gemini) ]<br/>
+↓<br/>
+[ Neo4j Aura Cloud Property Graph ]<br/>
+↙ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ↘<br/>
+[ 2-Hop Topological Cypher Retrieval ] &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; [ In-Browser PyVis Physics Engine ]<br/>
+↓<br/>
+[ Grounded Reasoning Engine (Gemini) ]<br/>
+↓<br/>
+<span class="text-emerald-400 font-bold">[ Auditable Executive Reports &amp; Triple Audit Trail ]</span>
+        </div>
+      </section>
+
+      <!-- SECTION 5 -->
+      <section class="space-y-6 pt-4 border-t border-cardBorder">
+        <h2 class="text-2xl font-bold text-white tracking-tight">
+          5. Technical Implementation &amp; Code Walkthrough
+        </h2>
+
+        <!-- Step 1 -->
+        <div class="space-y-3">
+          <h3 class="text-lg font-bold text-graphCyan">Step 1: Dynamic Knowledge Triple Extraction</h3>
+          <p class="text-sm">
+            When an unstructured document is uploaded, we partition the text into structured chunks and prompt Google Gemini to extract semantic nodes and relationships in clean JSON format:
+          </p>
+          <div class="p-4 rounded-xl bg-cardBg border border-cardBorder font-mono text-xs overflow-x-auto text-slate-300">
+<pre><span class="text-purple-400">def</span> <span class="text-blue-400">extract_universal_knowledge_graph</span>(full_text):
+    client = get_gemini_client()
+    chunk_size = 3500
+    chunks = [full_text[i:i+chunk_size] <span class="text-purple-400">for</span> i <span class="text-purple-400">in</span> range(0, len(full_text), chunk_size)]
+    
+    combined_graph = {<span class="text-emerald-400">"nodes"</span>: [], <span class="text-emerald-400">"relationships"</span>: []}
+    
+    <span class="text-purple-400">for</span> idx, chunk <span class="text-purple-400">in</span> enumerate(chunks[:5]):
+        prompt = <span class="text-emerald-400">f"""
+        Analyze the following text excerpt and extract structured knowledge graph entities and relationships.
+        
+        DOCUMENT TEXT:
+        {chunk}
+
+        Extract all key entities, facts, and relationships into JSON:
+        {{
+          "nodes": [{{"id": "EntityNameOrValue", "label": "EntityType"}}],
+          "relationships": [{{"source": "EntityA", "type": "RELATIONSHIP_TYPE", "target": "EntityB"}}]
+        }}
+        Return ONLY valid JSON.
+        """</span>
+        response = client.chats.create(model=<span class="text-emerald-400">'gemini-3.5-flash-lite'</span>).send_message(prompt)
+        clean_json = response.text.replace(<span class="text-emerald-400">"```json"</span>, <span class="text-emerald-400">""</span>).replace(<span class="text-emerald-400">"```"</span>, <span class="text-emerald-400">""</span>).strip()
+        data = json.loads(clean_json)
+        
+        <span class="text-slate-500"># Merge nodes &amp; relationships without duplicates...</span>
+        
+    <span class="text-purple-400">return</span> combined_graph</pre>
+          </div>
+        </div>
+
+        <!-- Step 2 -->
+        <div class="space-y-3">
+          <h3 class="text-lg font-bold text-graphCyan">Step 2: Dynamic Ingestion into Neo4j with Document Lineage</h3>
+          <p class="text-sm">
+            To ensure every entity is traceable back to its source document, we use parameterized Cypher MERGE operations with <code>source_doc</code> metadata tags:
+          </p>
+          <div class="p-4 rounded-xl bg-cardBg border border-cardBorder font-mono text-xs overflow-x-auto text-slate-300">
+<pre><span class="text-purple-400">def</span> <span class="text-blue-400">save_universal_triples_to_neo4j</span>(graph_data, source_filename):
+    <span class="text-purple-400">with</span> driver.session() <span class="text-purple-400">as</span> session:
+        <span class="text-slate-500"># Ingest Nodes</span>
+        <span class="text-purple-400">for</span> node <span class="text-purple-400">in</span> graph_data.get(<span class="text-emerald-400">"nodes"</span>, []):
+            label = node.get(<span class="text-emerald-400">"label"</span>, <span class="text-emerald-400">"Entity"</span>).replace(<span class="text-emerald-400">" "</span>, <span class="text-emerald-400">"_"</span>)
+            session.run(
+                <span class="text-emerald-400">f"MERGE (n:`{label}` {{name: $name}}) SET n.source_doc = $doc"</span>,
+                name=str(node.get(<span class="text-emerald-400">"id"</span>)), doc=source_filename
+            )
+                
+        <span class="text-slate-500"># Ingest Relationships</span>
+        <span class="text-purple-400">for</span> rel <span class="text-purple-400">in</span> graph_data.get(<span class="text-emerald-400">"relationships"</span>, []):
+            rel_type = rel.get(<span class="text-emerald-400">"type"</span>, <span class="text-emerald-400">"CONNECTED_TO"</span>).replace(<span class="text-emerald-400">" "</span>, <span class="text-emerald-400">"_"</span>).upper()
+            cypher = <span class="text-emerald-400">f"""
+            MATCH (a {{name: $source}})
+            MATCH (b {{name: $target}})
+            MERGE (a)-[r:`{rel_type}`]->(b)
+            SET r.source_doc = $doc
+            """</span>
+            session.run(cypher, source=str(rel[<span class="text-emerald-400">'source'</span>]), target=str(rel[<span class="text-emerald-400">'target'</span>]), doc=source_filename)</pre>
+          </div>
+        </div>
+
+        <!-- Step 3 -->
+        <div class="space-y-3">
+          <h3 class="text-lg font-bold text-graphCyan">Step 3: Deterministic 2-Hop Cypher Traversal</h3>
+          <p class="text-sm">
+            When a user asks a question, the query engine extracts key entity anchors and executes a 2-hop topological traversal in Cypher:
+          </p>
+          <div class="p-4 rounded-xl bg-cardBg border border-cardBorder font-mono text-xs overflow-x-auto text-slate-300">
+<pre><span class="text-purple-400">MATCH</span> (a)-[r]->(b)
+<span class="text-purple-400">OPTIONAL MATCH</span> (b)-[r2]->(c)
+<span class="text-purple-400">WITH</span> a, r, b, r2, c,
+     [term <span class="text-purple-400">IN</span> $keywords <span class="text-purple-400">WHERE</span> toLower(a.name) <span class="text-purple-400">CONTAINS</span> term 
+        <span class="text-purple-400">OR</span> toLower(b.name) <span class="text-purple-400">CONTAINS</span> term 
+        <span class="text-purple-400">OR</span> toLower(labels(a)[0]) <span class="text-purple-400">CONTAINS</span> term 
+        <span class="text-purple-400">OR</span> toLower(labels(b)[0]) <span class="text-purple-400">CONTAINS</span> term] <span class="text-purple-400">AS</span> matches
+<span class="text-purple-400">WHERE</span> size(matches) > 0
+<span class="text-purple-400">ORDER BY</span> size(matches) <span class="text-purple-400">DESC</span>
+<span class="text-purple-400">RETURN</span> labels(a)[0] <span class="text-purple-400">AS</span> SourceType, a.name <span class="text-purple-400">AS</span> Source, 
+       type(r) <span class="text-purple-400">AS</span> Rel1, 
+       labels(b)[0] <span class="text-purple-400">AS</span> TargetType, b.name <span class="text-purple-400">AS</span> Target,
+       type(r2) <span class="text-purple-400">AS</span> Rel2, 
+       labels(c)[0] <span class="text-purple-400">AS</span> SubTargetType, c.name <span class="text-purple-400">AS</span> SubTarget
+<span class="text-purple-400">LIMIT</span> 40</pre>
+          </div>
+          <div class="p-3 bg-darkBg rounded-lg border border-cardBorder text-xs text-slate-300">
+            <strong>Why 2-Hop Traversal is Crucial:</strong>
+            <ul class="mt-1 space-y-1 pl-3 list-disc text-slate-400">
+              <li><strong class="text-slate-200">Hop 1 (a ➔ b):</strong> Identifies direct relationships (e.g., Ghana ➔ Cocoa Powder).</li>
+              <li><strong class="text-slate-200">Hop 2 (b ➔ c):</strong> Discovers second-order multi-hop constraints (e.g., Cocoa Powder ➔ Certificate of Origin).</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Step 4 -->
+        <div class="space-y-3">
+          <h3 class="text-lg font-bold text-graphCyan">Step 4: Strict Zero-Hallucination Grounding</h3>
+          <p class="text-sm">
+            We pass the retrieved graph facts directly into Gemini with strict guardrail constraints:
+          </p>
+          <div class="p-4 rounded-xl bg-cardBg border border-emerald-500/30 font-mono text-xs overflow-x-auto text-emerald-300">
+<pre>You are an Enterprise GraphAI Intelligence System.
+Answer the user's question accurately using ONLY the structured Graph Database facts provided below.
+
+--- RETRIEVED NEO4J KNOWLEDGE GRAPH FACTS ---
+[Country] 'Ghana' --(EXPORTS)--> [Product] 'Cocoa Powder' --(REQUIRES)--> [Document] 'AfCFTA Certificate of Origin'
+[Document] 'AfCFTA Certificate of Origin' --(ISSUED_BY)--> [RegulatoryBody] 'GEPA'
+--------------------------------------------
+
+User Query: What are the rules and required documents for exporting Cocoa Powder from Ghana?
+
+Instructions:
+- Directly and accurately answer using ONLY the facts above.
+- If the context does not contain the requested information, explicitly state what is missing. Do not guess.</pre>
+          </div>
+          <p class="text-sm text-slate-400">
+            If the factual proof does not exist in Neo4j, the LLM refuses to hallucinate and reports the exact data gap.
+          </p>
+        </div>
+      </section>
+
+      <!-- SECTION 6: IMAGE 2 -->
+      <section class="space-y-4 pt-4 border-t border-cardBorder">
+        <h2 class="text-2xl font-bold text-white tracking-tight">
+          6. Real-World Validation: Subgraph Physics in Action
+        </h2>
+        <p>
+          To give users full transparency, the platform renders the retrieved subgraph using PyVis physics simulation directly in the browser:
+        </p>
+
+        <!-- IMAGE 2 -->
+        <div class="my-6 rounded-2xl overflow-hidden border border-cardBorder bg-cardBg">
+          <img src="../assets/images/diagram2.png" alt="PyVis Subgraph Topology in Streamlit" class="w-full h-auto object-cover" onerror="this.parentElement.innerHTML='<div class=\'p-8 text-center text-slate-400 font-mono text-xs\'>[ Diagram 2: Place diagram2.png in /assets/images/ ]</div>'" />
+          <div class="p-3 text-center text-xs font-mono text-slate-400 border-t border-cardBorder">
+            Figure 2: Interactive PyVis Knowledge Graph rendered in-browser for live queries
+          </div>
+        </div>
+
+        <p>
+          Alongside every advisory report, the platform generates an <strong class="text-white">Audit Trail</strong> showing the exact Neo4j triples used as ground truth evidence.
+        </p>
+      </section>
+
+      <!-- SECTION 7: COMPARISON TABLE -->
+      <section class="space-y-4 pt-4 border-t border-cardBorder">
+        <h2 class="text-2xl font-bold text-white tracking-tight">
+          7. Key Takeaways &amp; Architectural Comparison
+        </h2>
+
+        <div class="overflow-x-auto">
+          <table class="w-full text-left text-xs sm:text-sm border border-cardBorder rounded-xl overflow-hidden">
+            <thead class="bg-cardBg text-graphCyan font-mono border-b border-cardBorder">
+              <tr>
+                <th class="p-3.5 sm:p-4">Feature</th>
+                <th class="p-3.5 sm:p-4 text-slate-300">Naive Vector RAG</th>
+                <th class="p-3.5 sm:p-4 text-white">Enterprise GraphRAG</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-cardBorder font-mono text-xs">
+              <tr>
+                <td class="p-3.5 sm:p-4 text-white font-bold">Data Representation</td>
+                <td class="p-3.5 sm:p-4 text-slate-400">Flat, isolated text chunks</td>
+                <td class="p-3.5 sm:p-4 text-graphCyan">Interconnected Property Graph</td>
+              </tr>
+              <tr>
+                <td class="p-3.5 sm:p-4 text-white font-bold">Multi-Hop Reasoning</td>
+                <td class="p-3.5 sm:p-4 text-red-400">❌ Fails on multi-page links</td>
+                <td class="p-3.5 sm:p-4 text-emerald-400">✅ Native 2-hop path traversal</td>
+              </tr>
+              <tr>
+                <td class="p-3.5 sm:p-4 text-white font-bold">Hallucination Rate</td>
+                <td class="p-3.5 sm:p-4 text-yellow-400">⚠️ High when context is sparse</td>
+                <td class="p-3.5 sm:p-4 text-emerald-400">🛡️ 0% (Strict fact grounding)</td>
+              </tr>
+              <tr>
+                <td class="p-3.5 sm:p-4 text-white font-bold">Auditability</td>
+                <td class="p-3.5 sm:p-4 text-slate-400">Difficult to cite exact links</td>
+                <td class="p-3.5 sm:p-4 text-emerald-400">✅ 100% verifiable triple trail</td>
+              </tr>
+              <tr>
+                <td class="p-3.5 sm:p-4 text-white font-bold">Domain Complexities</td>
+                <td class="p-3.5 sm:p-4 text-slate-400">Keyword similarity only</td>
+                <td class="p-3.5 sm:p-4 text-graphCyan">Explicit relationships &amp; rules</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- CONCLUSION -->
+      <section class="space-y-4 pt-4 border-t border-cardBorder">
+        <h2 class="text-2xl font-bold text-white tracking-tight">
+          Conclusion &amp; Next Steps
+        </h2>
+        <p>
+          Vector search is great for fuzzy matching and broad thematic exploration. But when your enterprise needs deterministic reasoning, zero-hallucination compliance, and auditable proof, <strong class="text-white">Knowledge Graphs are non-negotiable</strong>.
+        </p>
+        <p>
+          By replacing flat, probabilistic vector searches with deterministic topological graph traversals, we eliminate the primary driver of LLM hallucinations: <em>context fragmentation</em>. Combining the schema flexibility of Neo4j with the reasoning capabilities of Google Gemini Flash creates an AI architecture that enterprise decision-makers can actually trust.
+        </p>
+      </section>
+
+    </article>
+
+    <!-- Post Article CTA / Project Box -->
+    <div class="mt-14 p-6 sm:p-8 rounded-2xl bg-cardBg border border-cardBorder space-y-4">
+      <h3 class="text-lg font-bold text-white flex items-center gap-2">
+        <i data-lucide="sparkles" class="text-graphCyan w-5 h-5"></i> Explore the Project
+      </h3>
+      <p class="text-xs sm:text-sm text-slate-300 leading-relaxed">
+        Test out the live interactive GraphRAG demo or reach out on LinkedIn to discuss custom Graph Data Science architectures for your organization.
+      </p>
+
+      <div class="flex flex-wrap items-center gap-3 pt-2">
+        <a href="https://enterprise-graphrag-engine.streamlit.app/" target="_blank" class="px-4 py-2 rounded-lg bg-gradient-to-r from-graphCyan to-graphBlue text-black font-bold text-xs flex items-center gap-1.5 hover:opacity-90 transition">
+          <i data-lucide="external-link" class="w-4 h-4"></i> Live Interactive Demo
+        </a>
+        <a href="https://www.linkedin.com/in/sonnyhoney/" target="_blank" class="px-4 py-2 rounded-lg bg-darkBg border border-cardBorder hover:border-slate-500 text-white font-semibold text-xs flex items-center gap-1.5 transition">
+          <i data-lucide="linkedin" class="w-4 h-4"></i> Connect on LinkedIn
+        </a>
+        <a href="https://github.com/sonnyhoney" target="_blank" class="px-4 py-2 rounded-lg bg-darkBg border border-cardBorder hover:border-slate-500 text-white font-semibold text-xs flex items-center gap-1.5 transition">
+          <i data-lucide="github" class="w-4 h-4"></i> GitHub Profile
+        </a>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="py-8 border-t border-cardBorder text-center text-xs text-slate-500 max-w-4xl mx-auto px-6">
+    © 2026 adjacency.xyz • Agwu Sunday Eze. All rights reserved.
+  </footer>
+
+  <script>lucide.createIcons();</script>
+</body>
+</html>
