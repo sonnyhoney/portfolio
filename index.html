@@ -50,13 +50,16 @@
 </head>
 <body class="bg-darkBg text-slate-200 font-sans antialiased selection:bg-graphCyan selection:text-black relative">
 
-  <!-- Navigation -->
-  <nav class="fixed top-0 w-full z-50 bg-darkBg/85 backdrop-blur-md border-b border-cardBorder">
+  <!-- Navigation Bar with Responsive Mobile Menu -->
+  <nav class="fixed top-0 w-full z-50 bg-darkBg/90 backdrop-blur-md border-b border-cardBorder">
     <div class="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
+      <!-- Logo -->
       <a href="#" class="font-mono font-bold text-base text-white flex items-center gap-2">
         <i data-lucide="network" class="text-graphCyan w-5 h-5"></i>
         <span>adjacency<span class="text-graphCyan">.xyz</span></span>
       </a>
+
+      <!-- Desktop Navigation Links (Visible on tablets & desktops) -->
       <div class="hidden md:flex items-center gap-6 text-sm font-medium text-slate-300">
         <a href="#about" class="hover:text-graphCyan transition">About</a>
         <a href="#skills" class="hover:text-graphCyan transition">Tech Stack</a>
@@ -65,17 +68,38 @@
         <a href="#articles" class="hover:text-graphCyan transition">Articles</a>
         <a href="#certifications" class="hover:text-graphCyan transition">Certifications</a>
       </div>
+
+      <!-- Action Buttons & Mobile Hamburger Button -->
       <div class="flex items-center gap-2 sm:gap-3">
         <a href="/resume.pdf" target="_blank" class="flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold rounded-lg bg-cardBg border border-cardBorder hover:border-slate-500 text-slate-200 transition">
           <i data-lucide="file-text" class="w-3.5 h-3.5 text-graphCyan"></i> Resume
         </a>
-        <a href="#contact" class="px-3.5 py-1.5 text-xs font-semibold rounded-lg bg-gradient-to-r from-graphCyan to-graphBlue text-black hover:opacity-90 transition font-mono">
+        <a href="#contact" class="hidden sm:inline-flex px-3.5 py-1.5 text-xs font-semibold rounded-lg bg-gradient-to-r from-graphCyan to-graphBlue text-black hover:opacity-90 transition font-mono">
           Contact
+        </a>
+
+        <!-- Mobile Hamburger Toggle Button (Visible ONLY on mobile) -->
+        <button onclick="toggleMobileMenu()" id="mobile-menu-btn" class="md:hidden p-2 rounded-lg bg-cardBg border border-cardBorder text-slate-300 hover:text-graphCyan hover:border-slate-500 transition cursor-pointer" aria-label="Toggle Menu">
+          <i data-lucide="menu" id="mobile-menu-icon" class="w-5 h-5"></i>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Dropdown Menu Drawer -->
+    <div id="mobile-menu" class="hidden md:hidden bg-darkBg/95 backdrop-blur-xl border-b border-cardBorder px-6 py-5 space-y-4 shadow-2xl">
+      <a href="#about" onclick="closeMobileMenu()" class="block text-sm font-medium text-slate-200 hover:text-graphCyan py-1">About Me</a>
+      <a href="#skills" onclick="closeMobileMenu()" class="block text-sm font-medium text-slate-200 hover:text-graphCyan py-1">Tech Stack & Toolkit</a>
+      <a href="#projects" onclick="closeMobileMenu()" class="block text-sm font-medium text-slate-200 hover:text-graphCyan py-1">Featured Projects</a>
+      <a href="#services" onclick="closeMobileMenu()" class="block text-sm font-medium text-slate-200 hover:text-graphCyan py-1">Graph Services</a>
+      <a href="#articles" onclick="closeMobileMenu()" class="block text-sm font-medium text-slate-200 hover:text-graphCyan py-1">Technical Articles</a>
+      <a href="#certifications" onclick="closeMobileMenu()" class="block text-sm font-medium text-slate-200 hover:text-graphCyan py-1">Verified Certifications</a>
+      <div class="pt-3 border-t border-cardBorder/60 flex items-center justify-between">
+        <a href="#contact" onclick="closeMobileMenu()" class="w-full text-center py-2.5 rounded-lg bg-gradient-to-r from-graphCyan to-graphBlue text-black font-semibold text-xs transition">
+          Contact Agwu Sunday Eze
         </a>
       </div>
     </div>
   </nav>
-
   <!-- Hero Section with Interactive Force Graph Background -->
   <section class="relative min-h-[90vh] flex items-center justify-center pt-24 pb-16 px-6 overflow-hidden">
     <!-- Interactive Graph Canvas Background -->
@@ -526,6 +550,30 @@
 
   <!-- Lucide Icons Initialize -->
   <script>
+
+    function toggleMobileMenu() {
+      const menu = document.getElementById('mobile-menu');
+      const menuIcon = document.getElementById('mobile-menu-icon');
+      menu.classList.toggle('hidden');
+      
+      if (menu.classList.contains('hidden')) {
+        menuIcon.setAttribute('data-lucide', 'menu');
+      } else {
+        menuIcon.setAttribute('data-lucide', 'x');
+      }
+      lucide.createIcons();
+    }
+
+    function closeMobileMenu() {
+      const menu = document.getElementById('mobile-menu');
+      const menuIcon = document.getElementById('mobile-menu-icon');
+      if (menu) menu.classList.add('hidden');
+      if (menuIcon) {
+        menuIcon.setAttribute('data-lucide', 'menu');
+        lucide.createIcons();
+      }
+    }
+    
     lucide.createIcons();
 
     function copyEmail() {
