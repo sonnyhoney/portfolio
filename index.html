@@ -209,14 +209,14 @@
   <section id="projects" class="py-20 px-6 max-w-6xl mx-auto border-t border-cardBorder">
     <div class="flex flex-col md:flex-row md:items-end justify-between mb-12">
       <div>
-        <p class="text-xs font-mono text-graphCyan uppercase tracking-widest">Flagship Project</p>
-        <h2 class="text-3xl font-bold text-white mt-1">Enterprise GraphRAG Engine</h2>
+        <p class="text-xs font-mono text-graphCyan uppercase tracking-widest">Flagship Systems</p>
+        <h2 class="text-3xl font-bold text-white mt-1">Enterprise Graph AI &amp; GDS Projects</h2>
       </div>
-      <p class="text-sm text-slate-400 mt-2 md:mt-0">Multi-Format Knowledge Graph & Policy Intelligence System</p>
+      <p class="text-sm text-slate-400 mt-2 md:mt-0">Live interactive platforms powered by Neo4j &amp; Google Gemini</p>
     </div>
 
-    <!-- Project Card -->
-    <div class="bg-cardBg border border-cardBorder rounded-2xl p-6 lg:p-8 hover:border-slate-600 transition shadow-2xl mb-8">
+    <!-- PROJECT 1: Universal GraphAI Platform / GraphRAG Engine -->
+    <div class="bg-cardBg border border-cardBorder rounded-2xl p-6 lg:p-8 hover:border-slate-600 transition shadow-2xl mb-10">
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
         <div class="lg:col-span-7 space-y-4">
           <div class="flex flex-wrap gap-2">
@@ -248,22 +248,25 @@
             </div>
           </div>
 
-          <!-- Links -->
-        
-<div class="pt-2 space-y-3">
-  <div class="flex items-center gap-3">
-    <a href="https://enterprise-graphrag-engine.streamlit.app" target="_blank" class="px-5 py-2.5 rounded-lg bg-gradient-to-r from-graphCyan to-graphBlue text-black text-xs font-bold flex items-center gap-2 hover:opacity-90 transition shadow-lg shadow-cyan-500/20">
-      <i data-lucide="external-link" class="w-4 h-4"></i> Launch Live App
-    </a>
-  </div>
-  
-  <div class="inline-flex items-center gap-2.5 px-3.5 py-2 rounded-lg bg-darkBg border border-slate-700 text-xs font-medium text-slate-200 shadow-md">
-    <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse shrink-0"></span>
-    <span><strong>Streamlit Cloud Notice:</strong> If waking from sleep, click <em>"Wake Up"</em> & allow ~15s to boot.</span>
-  </div>
-</div>
+          <!-- Links & Streamlit Notice -->
+          <div class="pt-2 space-y-3">
+            <div class="flex items-center gap-3">
+              <a href="https://enterprise-graphrag-engine.streamlit.app" target="_blank" class="px-5 py-2.5 rounded-lg bg-gradient-to-r from-graphCyan to-graphBlue text-black text-xs font-bold flex items-center gap-2 hover:opacity-90 transition shadow-lg shadow-cyan-500/20">
+                <i data-lucide="external-link" class="w-4 h-4"></i> Launch Live App
+              </a>
+              <a href="articles/why-vector-search-fails-graphrag.html" class="px-4 py-2.5 rounded-lg bg-darkBg border border-cardBorder hover:border-slate-500 text-slate-200 text-xs font-semibold flex items-center gap-2 transition">
+                <i data-lucide="file-text" class="w-4 h-4 text-graphCyan"></i> Read Deep Dive
+              </a>
+            </div>
+            
+            <div class="inline-flex items-center gap-2.5 px-3.5 py-2 rounded-lg bg-darkBg border border-slate-700 text-xs font-medium text-slate-200 shadow-md">
+              <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse shrink-0"></span>
+              <span><strong>Streamlit Cloud Notice:</strong> If waking from sleep, click <em>"Wake Up"</em> &amp; allow ~15s to boot.</span>
+            </div>
+          </div>
+        </div>
 
-        <!-- Project Visual Box -->
+        <!-- Project 1 Visual Box -->
         <div class="lg:col-span-5 bg-darkBg rounded-xl p-4 border border-cardBorder">
           <div class="flex items-center justify-between border-b border-cardBorder pb-2 mb-3">
             <span class="text-[11px] font-mono text-graphCyan">2-Hop Cypher Traversal</span>
@@ -279,6 +282,79 @@
             </div>
             <div class="text-emerald-400 text-[11px] flex items-center gap-1.5">
               <i data-lucide="check" class="w-3.5 h-3.5"></i> Factual grounding delivered to Gemini
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PROJECT 2: GlobalRoute-GraphAI Logistics Optimizer -->
+    <div class="bg-cardBg border border-cardBorder rounded-2xl p-6 lg:p-8 hover:border-slate-600 transition shadow-2xl mb-8">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+        <div class="lg:col-span-7 space-y-4">
+          <div class="flex flex-wrap gap-2">
+            <span class="px-2.5 py-0.5 rounded-md text-xs font-mono bg-cyan-950/70 border border-cyan-800 text-graphCyan">Neo4j GDS &amp; Cypher</span>
+            <span class="px-2.5 py-0.5 rounded-md text-xs font-mono bg-purple-950/70 border border-purple-800 text-purple-300">Multi-Objective Routing</span>
+            <span class="px-2.5 py-0.5 rounded-md text-xs font-mono bg-emerald-950/70 border border-emerald-800 text-emerald-300">Google Gemini Flash</span>
+            <span class="px-2.5 py-0.5 rounded-md text-xs font-mono bg-blue-950/70 border border-blue-800 text-sky-300">PyVis Physics</span>
+          </div>
+
+          <h3 class="text-2xl font-bold text-white">GlobalRoute-GraphAI: Multi-Modal Logistics Optimizer</h3>
+          
+          <p class="text-slate-300 text-sm leading-relaxed">
+            An enterprise supply chain and maritime routing engine modeling 24 global seaports, inland intermodal rail hubs, and critical maritime chokepoints. Dynamically solves multi-objective path traversals balancing lead time, freight cost ($/TEU), and Scope 3 ESG emissions (kg CO₂) with a 4-scenario geopolitical disruption simulator (Suez/Red Sea, Strait of Hormuz, Panama Canal, and Strait of Malacca).
+          </p>
+
+          <!-- Quantified Metrics Row -->
+          <div class="grid grid-cols-3 gap-3 py-2 border-y border-cardBorder">
+            <div>
+              <div class="text-lg font-extrabold text-graphCyan">24 Hubs</div>
+              <div class="text-[11px] text-slate-400">Global Seaports &amp; Rail Terminals</div>
+            </div>
+            <div>
+              <div class="text-lg font-extrabold text-emerald-400">4 Scenarios</div>
+              <div class="text-[11px] text-slate-400">Real-Time Chokepoint Rerouting</div>
+            </div>
+            <div>
+              <div class="text-lg font-extrabold text-purple-400">Scope 3 ESG</div>
+              <div class="text-[11px] text-slate-400">Auditable CO₂/TEU Tracking</div>
+            </div>
+          </div>
+
+          <!-- Links & Streamlit Notice -->
+          <div class="pt-2 space-y-3">
+            <div class="flex items-center gap-3">
+              <a href="https://globalroute-graphai.streamlit.app" target="_blank" class="px-5 py-2.5 rounded-lg bg-gradient-to-r from-graphCyan to-graphBlue text-black text-xs font-bold flex items-center gap-2 hover:opacity-90 transition shadow-lg shadow-cyan-500/20">
+                <i data-lucide="external-link" class="w-4 h-4"></i> Launch Live App
+              </a>
+              <a href="https://github.com/sonnyhoney/GlobalRoute-GraphAI" target="_blank" class="px-4 py-2.5 rounded-lg bg-darkBg border border-cardBorder hover:border-slate-500 text-slate-200 text-xs font-semibold flex items-center gap-2 transition">
+                <i data-lucide="github" class="w-4 h-4"></i> View Code
+              </a>
+            </div>
+            
+            <div class="inline-flex items-center gap-2.5 px-3.5 py-2 rounded-lg bg-darkBg border border-slate-700 text-xs font-medium text-slate-200 shadow-md">
+              <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse shrink-0"></span>
+              <span><strong>Streamlit Cloud Notice:</strong> If waking from sleep, click <em>"Wake Up"</em> &amp; allow ~15s to boot.</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project 2 Visual Box -->
+        <div class="lg:col-span-5 bg-darkBg rounded-xl p-4 border border-cardBorder">
+          <div class="flex items-center justify-between border-b border-cardBorder pb-2 mb-3">
+            <span class="text-[11px] font-mono text-graphCyan">Multi-Objective Path Traversal</span>
+            <span class="text-[10px] font-mono text-slate-500">Neo4j Aura Cloud</span>
+          </div>
+          <div class="rounded-lg overflow-hidden border border-slate-800 bg-[#0c101a] p-3 text-xs font-mono space-y-2">
+            <div class="text-slate-400 text-[11px]">// Dynamic Corridors with reduce() Aggregation</div>
+            <div class="p-2 bg-black/50 rounded border border-slate-800 text-[11px] text-slate-300">
+              MATCH p = (src:Location)-[r:CORRIDOR*1..6]-&gt;(dst:Location)<br/>
+              WHERE NONE(n IN nodes(p) WHERE n.code IN $blocked)<br/>
+              RETURN reduce(t=0, rel IN rels(p) | t + rel.transit_time_hrs),<br/>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;reduce(c=0, rel IN rels(p) | c + rel.cost_usd_per_teu)
+            </div>
+            <div class="text-emerald-400 text-[11px] flex items-center gap-1.5">
+              <i data-lucide="check" class="w-3.5 h-3.5"></i> Dynamic rerouting via Cape of Good Hope
             </div>
           </div>
         </div>
