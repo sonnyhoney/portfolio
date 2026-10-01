@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <!-- SEO & Canonical Tags -->
+  <title>Beyond Shortest Path: Building an Enterprise Multi-Modal Logistics & Chokepoint Engine | Sonny Honey</title>
+  <link rel="canonical" href="https://adjacency.xyz/articles/globalroute-multimodal-graph-engine.html" />
+  <meta name="description" content="How Graph Data Science models maritime corridors, simulates geopolitical crises (Suez, Hormuz, Panama), and optimizes multi-objective freight trade-offs." />
+  
+  <!-- OpenGraph -->
+  <meta property="og:title" content="Beyond Shortest Path: Building an Enterprise Multi-Modal Logistics & Chokepoint Engine with Neo4j & Gemini" />
+  <meta property="og:description" content="Simulating geopolitical chokepoints and optimizing multi-objective supply chain trade-offs with Neo4j GDS." />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://adjacency.xyz/articles/globalroute-multimodal-graph-engine.html" />
+
+  <!-- Tailwind CSS & Lucide Icons -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            graphCyan: '#00d2ff',
+            graphBlue: '#0066fe',
+            darkBg: '#090d16',
+            cardBg: '#111726',
+            cardBorder: '#1e293b'
+          }
+        }
+      }
+    }
+  </script>
+</head>
+<body class="bg-darkBg text-slate-200 font-sans antialiased selection:bg-graphCyan selection:text-black">
+
+  <!-- Navigation -->
+  <nav class="fixed top-0 w-full z-50 bg-darkBg/90 backdrop-blur-md border-b border-cardBorder">
+    <div class="max-w-4xl mx-auto px-6 h-16 flex items-center justify-between">
+      <a href="../index.html" class="font-mono font-bold text-base text-white flex items-center gap-2">
+        <i data-lucide="network" class="text-graphCyan w-5 h-5"></i>
+        <span>adjacency<span class="text-graphCyan">.xyz</span></span>
+      </a>
+      <a href="../index.html#articles" class="text-xs font-mono text-slate-300 hover:text-graphCyan flex items-center gap-1.5 transition">
+        <i data-lucide="arrow-left" class="w-4 h-4"></i> Back to Home
+      </a>
+    </div>
+  </nav>
+
+  <!-- Main Article Body -->
+  <main class="pt-28 pb-24 px-6 max-w-3xl mx-auto">
+    
+    <!-- Meta Details -->
+    <div class="flex items-center gap-3 text-xs font-mono text-slate-400 mb-4">
+      <span class="px-2.5 py-0.5 rounded bg-purple-950/70 border border-purple-800 text-purple-300">Graph Data Science</span>
+      <span>•</span>
+      <span>Supply Chain Resilience</span>
+      <span>•</span>
+      <span>8 min read</span>
+    </div>
+
+    <!-- Title -->
+    <h1 class="text-3xl sm:text-4.5xl font-extrabold text-white tracking-tight leading-tight mb-4">
+      Beyond Shortest Path: Building an Enterprise Multi-Modal Logistics &amp; Chokepoint Engine with Neo4j and Gemini
+    </h1>
+
+    <p class="text-lg text-slate-300 font-medium leading-relaxed mb-6">
+      How Graph Data Science models maritime corridors, simulates geopolitical crises (Suez, Hormuz, Panama), and optimizes multi-objective freight trade-offs (Cost, ETA, Scope 3 ESG).
+    </p>
+
+    <!-- Author Badge -->
+    <div class="flex items-center justify-between pb-8 border-b border-cardBorder mb-8">
+      <div class="flex items-center gap-3">
+        <div class="w-11 h-11 rounded-full bg-cyan-950 border border-cyan-500/40 flex items-center justify-center text-graphCyan font-mono font-bold text-sm">
+          SH
+        </div>
+        <div>
+          <p class="text-sm font-bold text-white">Sonny Honey</p>
+          <p class="text-xs text-slate-400 font-mono">Neo4j Certified Graph Data Science Engineer</p>
+        </div>
+      </div>
+      <a href="https://globalroute-graphai.streamlit.app/" target="_blank" class="px-3.5 py-1.5 rounded-lg bg-cyan-950/80 border border-cyan-500/40 text-graphCyan text-xs font-mono flex items-center gap-1 hover:bg-cyan-900/50 transition">
+        <i data-lucide="play" class="w-3.5 h-3.5"></i> Live App
+      </a>
+    </div>
+
+    <!-- Article Content -->
+    <article class="space-y-8 text-slate-300 text-base leading-relaxed">
+      
+      <!-- Section 1 -->
+      <section class="space-y-4">
+        <h2 class="text-2xl font-bold text-white tracking-tight">1. The Fragility of Modern Supply Chains</h2>
+        <p>
+          Over the last three years, global logistics transitioned from predictable "just-in-time" schedules to continuous crisis management. From Red Sea and Bab-el-Mandeb disruptions to drought-induced Panama Canal draft restrictions and escalating tensions around the Strait of Hormuz, enterprise supply chain leaders are discovering that legacy ERP systems and relational SQL databases are fundamentally unsuited for dynamic resilience.
+        </p>
+        <p>
+          Relational databases store trade data in flat tables, while traditional routing tools optimize only for simple geographic distance. But in real-world shipping, a Chief Supply Chain Officer (CSCO) cannot route purely on nautical miles:
+        </p>
+        <ul class="space-y-2 pl-2 text-slate-300 font-mono text-xs">
+          <li class="flex items-start gap-2"><span class="text-graphCyan">▶</span> What if the shortest route passes through a hostile strait with soaring marine insurance premiums?</li>
+          <li class="flex items-start gap-2"><span class="text-graphCyan">▶</span> What if rerouting adds 12 days at sea, spiking <strong>Scope 3 ESG emissions</strong> under strict EU ETS regulations?</li>
+          <li class="flex items-start gap-2"><span class="text-graphCyan">▶</span> What is the financial and inventory holding cost delta when bypassing the Suez Canal via the Cape of Good Hope?</li>
+        </ul>
+        <div class="p-4 rounded-xl bg-cardBg border-l-4 border-graphCyan text-slate-200 font-medium text-sm">
+          To solve multi-dimensional logistics challenges, we built <strong>GlobalRoute-GraphAI</strong> — a multi-modal supply chain engine powered by Neo4j Aura Cloud GDS and Google Gemini.
+        </div>
+      </section>
+
+      <!-- Section 2 -->
+      <section class="space-y-4 pt-4 border-t border-cardBorder">
+        <h2 class="text-2xl font-bold text-white tracking-tight">2. Modeling the Multi-Modal Property Graph</h2>
+        <p>
+          In global freight, relationships are not static lines — they are rich, multi-dimensional pipelines. We designed a property graph schema connecting 24 global seaports, inland intermodal rail hubs, distribution centers, and critical maritime chokepoints.
+        </p>
+        <div class="p-4 rounded-xl bg-[#0a0f1d] border border-cardBorder font-mono text-xs text-graphCyan overflow-x-auto leading-relaxed">
+(Manufacturer) ──[:INLAND_RAIL {cost, time, co2}]──&gt; (Seaport: Shanghai)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[:OCEAN_LANE {distance, cost, time, co2, reliability}]<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;▼<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(Maritime Chokepoint: Hormuz)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;▼<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(Transshipment Hub: Jebel Ali)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;▼<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(Inland Rail Hub: Duisburg)
+        </div>
+      </section>
+
+      <!-- Section 3 -->
+      <section class="space-y-4 pt-4 border-t border-cardBorder">
+        <h2 class="text-2xl font-bold text-white tracking-tight">3. Multi-Objective Path Traversal in Cypher</h2>
+        <p>
+          Standard routing tools calculate single-metric shortest paths. In <strong>GlobalRoute-GraphAI</strong>, we execute parameterized Cypher traversals with dynamic <code>reduce()</code> aggregations:
+        </p>
+        <div class="p-4 rounded-xl bg-cardBg border border-cardBorder font-mono text-xs overflow-x-auto text-slate-300">
+<pre><span class="text-purple-400">MATCH</span> p = (src:Location {code: $origin})-[r:CORRIDOR*1..6]->(dst:Location {code: $dest})
+<span class="text-purple-400">WHERE NONE</span>(n <span class="text-purple-400">IN</span> nodes(p) <span class="text-purple-400">WHERE</span> n.code <span class="text-purple-400">IN</span> $blocked_chokepoints)
+<span class="text-purple-400">WITH</span> p,
+     reduce(t = 0, rel <span class="text-purple-400">IN</span> relationships(p) | t + rel.transit_time_hrs) <span class="text-purple-400">AS</span> Total_Hours,
+     reduce(c = 0, rel <span class="text-purple-400">IN</span> relationships(p) | c + rel.cost_usd_per_teu) <span class="text-purple-400">AS</span> Total_Cost_USD,
+     reduce(e = 0, rel <span class="text-purple-400">IN</span> relationships(p) | e + rel.co2_kg_per_teu) <span class="text-purple-400">AS</span> Total_CO2_KG,
+     reduce(minRel = 1.0, rel <span class="text-purple-400">IN</span> relationships(p) | 
+        <span class="text-purple-400">CASE WHEN</span> rel.reliability &lt; minRel <span class="text-purple-400">THEN</span> rel.reliability <span class="text-purple-400">ELSE</span> minRel <span class="text-purple-400">END</span>) <span class="text-purple-400">AS</span> Min_Reliability,
+     [n <span class="text-purple-400">IN</span> nodes(p) | n.name] <span class="text-purple-400">AS</span> Path_Sequence
+<span class="text-purple-400">RETURN</span> Total_Hours, Total_Cost_USD, Total_CO2_KG, Min_Reliability, Path_Sequence
+<span class="text-purple-400">ORDER BY</span> Total_Hours <span class="text-purple-400">ASC</span>
+<span class="text-purple-400">LIMIT</span> 10;</pre>
+        </div>
+      </section>
+
+      <!-- Section 4 -->
+      <section class="space-y-4 pt-4 border-t border-cardBorder">
+        <h2 class="text-2xl font-bold text-white tracking-tight">4. Real-Time Crisis Simulation: 4 Geopolitical Scenarios</h2>
+        <p>
+          By filtering out compromised nodes on the fly, the engine calculates optimal bypasses without re-indexing the database:
+        </p>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 my-4 font-mono text-xs">
+          <div class="p-4 rounded-xl bg-cardBg border border-cardBorder">
+            <span class="text-red-400 font-bold">1. Suez &amp; Red Sea Crisis</span>
+            <p class="text-slate-400 mt-2">Reroutes Asia-to-Europe freight via Cape of Good Hope (+12.5 days, +$1,430/TEU, +950 kg CO₂).</p>
+          </div>
+          <div class="p-4 rounded-xl bg-cardBg border border-cardBorder">
+            <span class="text-amber-400 font-bold">2. Strait of Hormuz Conflict</span>
+            <p class="text-slate-400 mt-2">Bypasses Persian Gulf / Jebel Ali via the direct Arabian Sea deep-sea corridor.</p>
+          </div>
+          <div class="p-4 rounded-xl bg-cardBg border border-cardBorder">
+            <span class="text-yellow-400 font-bold">3. Panama Canal Drought</span>
+            <p class="text-slate-400 mt-2">Shifts Trans-Pacific cargo to West Coast intermodal rail corridors (LA to Chicago).</p>
+          </div>
+          <div class="p-4 rounded-xl bg-cardBg border border-cardBorder">
+            <span class="text-emerald-400 font-bold">4. Strait of Malacca Congestion</span>
+            <p class="text-slate-400 mt-2">Evaluates alternative transshipment paths across Sunda and Lombok corridors.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Section 5 -->
+      <section class="space-y-4 pt-4 border-t border-cardBorder">
+        <h2 class="text-2xl font-bold text-white tracking-tight">5. Mathematical Validation &amp; Industry Baselines</h2>
+        <p>
+          For a voyage from <strong>Shanghai to Duisburg Rail Port via Cape of Good Hope</strong>, the graph compounds across all 5 intermodal legs:
+        </p>
+        <div class="p-4 rounded-xl bg-[#0a0f1d] border border-cardBorder font-mono text-xs text-slate-300 space-y-1">
+          <div>• <strong>Total Lead Time:</strong> 120h + 288h + 48h + 336h + 8h = <span class="text-graphCyan font-bold">800 Hours (33.3 Days)</span></div>
+          <div>• <strong>Total Freight Cost:</strong> $450 + $950 + $250 + $1,450 + $180 = <span class="text-emerald-400 font-bold">$3,280 USD / TEU</span></div>
+          <div>• <strong>Scope 3 ESG Carbon:</strong> 280kg + 780kg + 130kg + 950kg + 25kg = <span class="text-purple-400 font-bold">2,165 kg CO₂ / TEU</span></div>
+        </div>
+        <p class="text-xs text-slate-400">
+          These metrics align with real-world maritime indices from the <em>Drewry World Container Index (WCI)</em> and the <em>Global Logistics Emissions Council (GLEC)</em> framework.
+        </p>
+      </section>
+
+      <!-- Section 6 -->
+      <section class="space-y-4 pt-4 border-t border-cardBorder">
+        <h2 class="text-2xl font-bold text-white tracking-tight">6. Grounding AI with Deterministic Graph Facts</h2>
+        <p>
+          Rather than allowing an LLM to hallucinate trade routes, <strong>Google Gemini (gemini-3.5-flash-lite)</strong> is supplied strictly with verified topological graph paths to generate executive CSCO briefing reports.
+        </p>
+      </section>
+
+    </article>
+
+    <!-- Post Article CTA -->
+    <div class="mt-14 p-6 sm:p-8 rounded-2xl bg-cardBg border border-cardBorder space-y-4">
+      <h3 class="text-lg font-bold text-white flex items-center gap-2">
+        <i data-lucide="sparkles" class="text-graphCyan w-5 h-5"></i> Explore GlobalRoute-GraphAI
+      </h3>
+      <p class="text-xs sm:text-sm text-slate-300 leading-relaxed">
+        Test out the live interactive logistics optimizer or connect on LinkedIn to discuss custom Graph Data Science architectures for your enterprise.
+      </p>
+
+      <div class="flex flex-wrap items-center gap-3 pt-2">
+        <a href="https://globalroute-graphai.streamlit.app" target="_blank" class="px-4 py-2 rounded-lg bg-gradient-to-r from-graphCyan to-graphBlue text-black font-bold text-xs flex items-center gap-1.5 hover:opacity-90 transition">
+          <i data-lucide="external-link" class="w-4 h-4"></i> Live Interactive Demo
+        </a>
+        <a href="https://www.linkedin.com/in/sonnyhoney/" target="_blank" class="px-4 py-2 rounded-lg bg-darkBg border border-cardBorder hover:border-slate-500 text-white font-semibold text-xs flex items-center gap-1.5 transition">
+          <i data-lucide="linkedin" class="w-4 h-4"></i> Connect on LinkedIn
+        </a>
+      </div>
+    </div>
+
+  </main>
+
+  <footer class="py-8 border-t border-cardBorder text-center text-xs text-slate-500 max-w-4xl mx-auto px-6">
+    © 2026 adjacency.xyz • Agwu Sunday Eze. All rights reserved.
+  </footer>
+
+  <script>lucide.createIcons();</script>
+</body>
+</html>
