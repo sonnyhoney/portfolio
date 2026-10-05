@@ -1,5 +1,7 @@
 <!DOCTYPE html>
-<meta charset="UTF-8" />
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
   <!-- Optimized Title (< 60 chars) -->
@@ -18,6 +20,7 @@
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://adjacency.xyz/" />
   <meta property="og:image" content="https://adjacency.xyz/og-preview.png" />  
+  
   <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
   <!-- Lucide Icons -->
@@ -49,7 +52,18 @@
       z-index: 1;
     }
   </style>
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-97VDRQ9D7E"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-97VDRQ9D7E');
+  </script>
 </head>
+
 <body class="bg-darkBg text-slate-200 font-sans antialiased selection:bg-graphCyan selection:text-black relative">
 
   <!-- Navigation Bar with Responsive Mobile Menu -->
