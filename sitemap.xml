@@ -3,23 +3,31 @@
   <!-- 1. Home / Portfolio Page -->
   <url>
     <loc>https://adjacency.xyz/</loc>
-    <lastmod>2026-09-27</lastmod>
+    <lastmod>2026-10-07</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
 
-  <!-- 2. New Technical Article -->
+  <!-- 2. Technical Article #1: GraphRAG & Multi-Hop Reasoning -->
   <url>
     <loc>https://adjacency.xyz/articles/why-vector-search-fails-graphrag.html</loc>
-    <lastmod>2026-09-27</lastmod>
+    <lastmod>2026-10-07</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
 
-  <!-- 3. Resume Document -->
+  <!-- 3. Technical Article #2: GlobalRoute Multi-Modal Logistics Engine -->
+  <url>
+    <loc>https://adjacency.xyz/articles/globalroute-multimodal-graph-engine.html</loc>
+    <lastmod>2026-10-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- 4. Professional Resume -->
   <url>
     <loc>https://adjacency.xyz/resume.pdf</loc>
-    <lastmod>2026-09-27</lastmod>
+    <lastmod>2026-10-07</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
