@@ -135,6 +135,11 @@
         <div class="p-4 rounded-xl bg-cardBg border-l-4 border-graphCyan text-slate-200 font-medium text-sm">
           To solve this multi-dimensional challenge, we designed and built <strong>GlobalRoute-GraphAI</strong> — an enterprise-grade multi-modal supply chain resilience platform powered by <strong>Neo4j Aura Cloud GDS</strong> and <strong>Google Gemini (gemini-3.5-flash-lite)</strong>.
         </div>
+
+        <p class="text-sm text-slate-300 mt-2">
+        <em>To understand why semantic search models fail at dense relationship queries, see our companion deep dive on 
+        <a href="why-vector-search-fails-graphrag.html" class="text-graphCyan underline hover:text-sky-300 transition">why vector search fails at multi-hop reasoning</a>.</em>
+        </p>
       </section>
 
       <!-- Section 2 -->
@@ -369,6 +374,40 @@ Write a 3-paragraph Executive Advisory Brief for a Chief Supply Chain Officer:
       </section>
 
     </article>
+
+    <!-- Related Articles Internal Linking Box -->
+    <div class="mt-14 pt-8 border-t border-cardBorder">
+      <p class="text-xs font-mono text-purple-400 uppercase tracking-widest mb-2">Continue Reading</p>
+      <h3 class="text-xl font-bold text-white mb-6">Related Architectural Deep Dives</h3>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <!-- Link to Article 1 -->
+        <a href="why-vector-search-fails-graphrag.html" class="p-5 rounded-xl bg-cardBg border border-cardBorder hover:border-cyan-500/50 transition flex flex-col justify-between block group">
+          <div>
+            <span class="text-[10px] font-mono text-graphCyan">GraphRAG • GenAI Architecture</span>
+            <h4 class="text-sm font-bold text-white mt-1 group-hover:text-graphCyan transition">
+              Why Vector Search Fails at Multi-Hop Reasoning: The Case for Knowledge Graphs
+            </h4>
+          </div>
+          <div class="mt-3 text-xs font-mono text-slate-400 flex items-center gap-1 group-hover:text-graphCyan">
+            <span>Read Case Study</span> <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+          </div>
+        </a>
+
+        <!-- Link to Article 3 -->
+        <a href="detecting-fraud-rings-graph-data-science.html" class="p-5 rounded-xl bg-cardBg border border-cardBorder hover:border-red-500/50 transition flex flex-col justify-between block group">
+          <div>
+            <span class="text-[10px] font-mono text-red-400">Graph ML • Financial Crime</span>
+            <h4 class="text-sm font-bold text-white mt-1 group-hover:text-red-400 transition">
+              Detecting Fraud Rings and Money Laundering at Scale with Neo4j &amp; Gemini
+            </h4>
+          </div>
+          <div class="mt-3 text-xs font-mono text-slate-400 flex items-center gap-1 group-hover:text-red-400">
+            <span>Read Case Study</span> <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+          </div>
+        </a>
+      </div>
+    </div>
 
     <!-- Post Article CTA / Explore Box -->
     <div class="mt-14 p-6 sm:p-8 rounded-2xl bg-cardBg border border-cardBorder space-y-4">
