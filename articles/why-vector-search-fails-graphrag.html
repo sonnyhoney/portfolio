@@ -157,6 +157,12 @@
           <strong class="text-white">What happens with Naive Vector Search?</strong><br/>
           A vector database computes semantic similarity between the user query and isolated text chunks. It might fetch Page 3 and Page 77, but miss Page 18 and Page 42 because individual paragraphs lacked keyword overlap with the query. The LLM either gives an incomplete answer or hallucinates compliance rules.
         </p>
+
+        <p class="text-sm text-slate-300 mt-2">
+        <em>For a deeper look at optimizing physical corridors and global trade lanes, explore our architectural case study on 
+        <a href="globalroute-multimodal-graph-engine.html" class="text-graphCyan underline hover:text-sky-300 transition">building an enterprise multi-modal logistics and maritime routing engine</a> with Neo4j.</em>
+        </p>
+        
       </section>
 
       <!-- SECTION 3 -->
@@ -430,6 +436,40 @@ Instructions:
       </section>
 
     </article>
+
+    <!-- Related Articles Internal Linking Box -->
+    <div class="mt-14 pt-8 border-t border-cardBorder">
+      <p class="text-xs font-mono text-graphCyan uppercase tracking-widest mb-2">Continue Reading</p>
+      <h3 class="text-xl font-bold text-white mb-6">Related Architectural Deep Dives</h3>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <!-- Link to Article 2 -->
+        <a href="globalroute-multimodal-graph-engine.html" class="p-5 rounded-xl bg-cardBg border border-cardBorder hover:border-purple-500/50 transition flex flex-col justify-between block group">
+          <div>
+            <span class="text-[10px] font-mono text-purple-400">Graph Data Science • Logistics</span>
+            <h4 class="text-sm font-bold text-white mt-1 group-hover:text-purple-300 transition">
+              Beyond Shortest Path: Building an Enterprise Multi-Modal Logistics &amp; Chokepoint Engine
+            </h4>
+          </div>
+          <div class="mt-3 text-xs font-mono text-slate-400 flex items-center gap-1 group-hover:text-purple-300">
+            <span>Read Case Study</span> <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+          </div>
+        </a>
+
+        <!-- Link to Article 3 -->
+        <a href="detecting-fraud-rings-graph-data-science.html" class="p-5 rounded-xl bg-cardBg border border-cardBorder hover:border-red-500/50 transition flex flex-col justify-between block group">
+          <div>
+            <span class="text-[10px] font-mono text-red-400">Graph ML • Financial Crime</span>
+            <h4 class="text-sm font-bold text-white mt-1 group-hover:text-red-400 transition">
+              Detecting Fraud Rings and Money Laundering at Scale with Neo4j &amp; Gemini
+            </h4>
+          </div>
+          <div class="mt-3 text-xs font-mono text-slate-400 flex items-center gap-1 group-hover:text-red-400">
+            <span>Read Case Study</span> <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+          </div>
+        </a>
+      </div>
+    </div>
 
     <!-- Post Article CTA / Project Box -->
     <div class="mt-14 p-6 sm:p-8 rounded-2xl bg-cardBg border border-cardBorder space-y-4">
