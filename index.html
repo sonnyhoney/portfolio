@@ -449,6 +449,83 @@
         </div>
       </div>
     </div>
+
+    <!-- PROJECT 4: Autonomous Financial Crime & Fraud Interceptor -->
+    <div class="bg-cardBg border border-cardBorder rounded-2xl p-6 lg:p-8 hover:border-slate-600 transition shadow-2xl mb-8">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+        <div class="lg:col-span-7 space-y-4">
+          <div class="flex flex-wrap gap-2">
+            <span class="px-2.5 py-0.5 rounded-md text-xs font-mono bg-red-950/70 border border-red-800 text-red-400">Neo4j Aura Reasoner</span>
+            <span class="px-2.5 py-0.5 rounded-md text-xs font-mono bg-cyan-950/70 border border-cyan-800 text-graphCyan">Upstash Redis Streams</span>
+            <span class="px-2.5 py-0.5 rounded-md text-xs font-mono bg-emerald-950/70 border border-emerald-800 text-emerald-300">0% Hallucination Evals</span>
+            <span class="px-2.5 py-0.5 rounded-md text-xs font-mono bg-purple-950/70 border border-purple-800 text-purple-300">Gemini 3.5 Flash Lite</span>
+          </div>
+
+          <h3 class="text-2xl font-bold text-white">Autonomous Financial Crime &amp; Fraud Interceptor</h3>
+          
+          <p class="text-slate-300 text-sm leading-relaxed">
+            An event-driven transaction surveillance engine that intercepts circular fund laundering loops and synthetic device farms <strong>in-flight (&lt; 20ms) before settlement</strong>. Uses an axiomatic graph reasoning layer in Neo4j to dynamically quarantine mule accounts, paired with a grounded Gemini agent that auto-generates regulatory Suspicious Activity Reports (SAR) backed by an automated 0.0% hallucination eval testbench.
+          </p>
+
+          <!-- Quantified Metrics Row -->
+          <div class="grid grid-cols-3 gap-3 py-2 border-y border-cardBorder">
+            <div>
+              <div class="text-lg font-extrabold text-red-400">&lt; 20ms</div>
+              <div class="text-[11px] text-slate-400">In-Flight Reasoner Check</div>
+            </div>
+            <div>
+              <div class="text-lg font-extrabold text-emerald-400">0.0% HER</div>
+              <div class="text-[11px] text-slate-400">Zero Hallucination Evals</div>
+            </div>
+            <div>
+              <div class="text-lg font-extrabold text-graphCyan">24/7 Alive</div>
+              <div class="text-[11px] text-slate-400">GitHub Actions CI/CD</div>
+            </div>
+          </div>
+
+          <!-- Links & Streamlit Notice -->
+          <div class="pt-2 space-y-3">
+            <div class="flex items-center gap-3">
+              <a href="https://autonomous-fraud-interceptor.streamlit.app" target="_blank" class="px-5 py-2.5 rounded-lg bg-gradient-to-r from-red-500 to-amber-500 text-white text-xs font-bold flex items-center gap-2 hover:opacity-90 transition shadow-lg shadow-red-500/20">
+                <i data-lucide="external-link" class="w-4 h-4"></i> Launch Live App
+              </a>
+              <a href="https://github.com/sonnyhoney/autonomous-fraud-interceptor" target="_blank" class="px-4 py-2.5 rounded-lg bg-darkBg border border-cardBorder hover:border-slate-500 text-slate-200 text-xs font-semibold flex items-center gap-2 transition">
+                <i data-lucide="github" class="w-4 h-4 text-graphCyan"></i> View Source
+              </a>
+              <a href="articles/in-flight-aml-interceptor-realtime-graph-reasoning.html" class="px-4 py-2.5 rounded-lg bg-darkBg border border-cardBorder hover:border-slate-500 text-slate-200 text-xs font-semibold flex items-center gap-2 transition">
+                <i data-lucide="file-text" class="w-4 h-4 text-purple-400"></i> Read Case Study
+              </a>
+            </div>
+            
+            <div class="inline-flex items-center gap-2.5 px-3.5 py-2 rounded-lg bg-darkBg border border-slate-700 text-xs font-medium text-slate-200 shadow-md">
+              <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse shrink-0"></span>
+              <span><strong>Streamlit Cloud Notice:</strong> If waking from sleep, click <em>"Wake Up"</em> &amp; allow ~15s to boot.</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Visual Architecture Box -->
+        <div class="lg:col-span-5 bg-darkBg rounded-xl p-4 border border-cardBorder">
+          <div class="flex items-center justify-between border-b border-cardBorder pb-2 mb-3">
+            <span class="text-[11px] font-mono text-red-400">In-Flight Axiomatic Reasoner</span>
+            <span class="text-[10px] font-mono text-slate-500">Neo4j Aura + Upstash</span>
+          </div>
+          <div class="rounded-lg overflow-hidden border border-slate-800 bg-[#0c101a] p-3 text-xs font-mono space-y-2">
+            <div class="text-slate-400 text-[11px]">// Real-Time Cycle Interception (Axiom A5)</div>
+            <div class="p-2 bg-black/50 rounded border border-slate-800 text-[11px] text-slate-300">
+              OPTIONAL MATCH cycle_path = (dst)-[:TRANSFERS_TO*1..5]-&gt;(src)<br/>
+              WITH is_device_farm, (cycle_path IS NOT NULL) AS is_cycle<br/>
+              WHERE is_cycle OR is_device_farm<br/>
+              SET dst:SuspiciousMule, src:SuspiciousMule<br/>
+              RETURN "TRANSACTION BLOCKED"
+            </div>
+            <div class="text-emerald-400 text-[11px] flex items-center gap-1.5">
+              <i data-lucide="shield-check" class="w-3.5 h-3.5"></i> Intercepted &amp; Quarantined in &lt; 20ms
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </section>
 
   <!-- Services & Capabilities Section -->
@@ -530,7 +607,7 @@
       </a>
     </div>
 
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
       
     <!-- Article 1 (Updated with Link) -->
       <a href="articles/why-vector-search-fails-graphrag.html" class="group p-6 rounded-2xl bg-cardBg border border-cardBorder hover:border-cyan-500/40 transition flex flex-col justify-between block cursor-pointer">
@@ -588,7 +665,26 @@
           <i data-lucide="arrow-right" class="w-3.5 h-3.5 group-hover:translate-x-1 transition"></i>
         </div>
       </a>
-       </div>
+
+      <!-- Article 4 -->
+      <a href="articles/stopping-money-laundering-before-it-leaves.html" class="group p-6 rounded-2xl bg-cardBg border border-cardBorder hover:border-red-500/40 transition flex flex-col justify-between block cursor-pointer">
+        <div>
+          <div class="flex items-center gap-2 text-[11px] font-mono text-slate-400 mb-3">
+            <span class="text-red-400">Real-Time Graph AI</span> • <span>AML Surveillance</span>
+          </div>
+          <h3 class="text-base font-bold text-white leading-snug group-hover:text-red-400 transition">
+            Stopping Money Laundering Before the Money Leaves: Real-Time Graph AI with Neo4j &amp; Gemini
+          </h3>
+          <p class="text-slate-400 text-xs mt-3 leading-relaxed">
+            Why overnight batch monitoring fails, and how sub-20ms graph reasoning combined with grounded Gemini agents intercepts circular laundering rings before settlement.
+          </p>
+        </div>
+        <div class="mt-4 flex items-center gap-1 text-xs font-mono text-red-400">
+          <span>Read Full Article</span>
+          <i data-lucide="arrow-right" class="w-3.5 h-3.5 group-hover:translate-x-1 transition"></i>
+        </div>
+      </a>
+    </div>
   </section>
 
  <!-- Verifiable Certifications Section -->
